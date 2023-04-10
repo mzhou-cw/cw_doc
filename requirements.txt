@@ -1,0 +1,7 @@
+sphinx==4.3.2
+sphinx_rtd_theme
+breathe==4.31.0
+myst_parser
+sphinxcontrib-mermaid
+recommonmark
+sphinx_markdown_tables
