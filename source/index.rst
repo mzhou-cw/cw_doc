@@ -11,3 +11,5 @@ Welcome to cw_doc's documentation!
    :caption: Contents:
    
    src/architecture.md
+   src/api
+   
