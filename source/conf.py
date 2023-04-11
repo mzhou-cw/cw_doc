@@ -15,7 +15,8 @@
 # sys.path.insert(0, os.path.abspath('.'))
 
 import sphinx_rtd_theme
-
+import textwrap
+import subprocess, os
 
 # -- Project information -----------------------------------------------------
 
@@ -26,14 +27,36 @@ author = 'CellWise'
 # The full version, including alpha/beta/rc tags
 release = '0.1.0'
 
+read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
+
+subprocess.run('mkdir _build',shell=True)
+subprocess.run('mkdir _build',shell=True,cwd='cw_sdk')
+subprocess.run('doxygen Doxyfile',cwd='cw_sdk',shell=True)
 
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['recommonmark','sphinx_markdown_tables'
+extensions = [
+    'breathe',
+    "sphinx_rtd_theme",
+    'myst_parser',
+    'sphinxcontrib.mermaid',
 ]
+
+breathe_projects = {
+    "cw_sdk": "cw_sdk/_build/doxyxml"
+}
+
+breathe_default_project = "cw_sdk"
+
+# Tell sphinx what the primary language being documented is.
+primary_domain = 'c'
+
+# Tell sphinx what the pygments highlight language should be.
+highlight_language = 'c'
+
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -48,7 +71,7 @@ language = 'zh_CN'
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = []
+exclude_patterns = ['cw_sdk/*']
 
 
 # -- Options for HTML output -------------------------------------------------
@@ -61,6 +84,6 @@ html_theme = 'sphinx_rtd_theme'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+#html_static_path = ['_static']
 
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]

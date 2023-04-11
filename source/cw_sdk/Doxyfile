@@ -1,0 +1,19 @@
+PROJECT_NAME           = CW_SDK_API
+
+INPUT                  = afe_ctrl.h 
+
+GENERATE_XML           = YES
+
+XML_OUTPUT             = _build/doxyxml
+
+GENERATE_HTML          = YES
+
+HTML_OUTPUT            = _build/doxyhtml
+
+GENERATE_LATEX         = NO
+
+WARN_IF_UNDOCUMENTED   = NO
+
+OPTIMIZE_OUTPUT_FOR_C  = YES
+
+WARN_AS_ERROR          = FAIL_ON_WARNINGS
